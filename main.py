@@ -1,19 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from twisted.python.util import println
+
 import Variables
 
+from Logins import login
+from Cooking_Facts_Generator import cooking_facts_generator
 
-
-from Login import login
 
 def main():
+ #  login_success = login(Variables.username, Variables.password)
+
+  #  if login_success:
+    #     println("Youtube login was successful")
+   # else:
+   #     println("Youtube login was not successful")
 
 
-    login(Variables.username, Variables.password)
-
+    cooking_facts_generator()
 
 
 if __name__ == '__main__':
-
     main()
-
