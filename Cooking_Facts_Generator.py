@@ -10,7 +10,7 @@ def cooking_facts_generator():
 
 
         # Set your OpenAI API key
-        openai.api_key = "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"
+        openai.api_key = "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"
 
         # Generate cooking facts using OpenAI's GPT-3 API
         response = openai.Completion.create(

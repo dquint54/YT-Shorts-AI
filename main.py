@@ -9,13 +9,13 @@ from Cooking_Facts_Generator import cooking_facts_generator
 
 
 def main():
- #  login_success = login(Variables.username, Variables.password)
 
-  #  if login_success:
-    #     println("Youtube login was successful")
-   # else:
-   #     println("Youtube login was not successful")
+    login_success = login(Variables.username, Variables.password)
 
+    if login_success:
+        println("Youtube login was successful")
+    else:
+        println("Youtube login was not successful")
 
     cooking_facts_generator()
 
