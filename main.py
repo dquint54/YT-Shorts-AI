@@ -17,7 +17,7 @@ def main():
     else:
         println("Youtube login was not successful")
 
-    cooking_facts_generator()
+
 
 
 if __name__ == '__main__':
