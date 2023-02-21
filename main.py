@@ -1,11 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+
 from twisted.python.util import println
 
 import Variables
 
 from Logins import login
-from Cooking_Facts_Generator import cooking_facts_generator
+from Cooking_Facts_Generator import facts_generator
 
 
 def main():

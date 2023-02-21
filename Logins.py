@@ -3,15 +3,16 @@ import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.webdriver.chrome.options import Options
 import Variables
 from TestObjects import test_objects
 
 
 def login(username, password):
     # Create a Chrome web driver instance
-
-    driver = webdriver.Chrome(Variables.chromedriver_path)
+    options = Options()
+    options.add_argument("--incognito")
+    driver = webdriver.Chrome(Variables.chromedriver_path, chrome_options=options)
 
     # importing the test objects from TestObjects.py
 

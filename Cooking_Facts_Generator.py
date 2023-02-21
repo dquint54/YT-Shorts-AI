@@ -34,7 +34,6 @@ def facts_generator():
 
     # Create a CSV file to store the facts
 
-
     if not os.path.exists(filename):
         with open(filename, "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
@@ -50,21 +49,27 @@ def facts_generator():
 def check_similarity(fact, existing_facts, threshold=0.8):
     for existing_fact in existing_facts:
         # Calculate the similarity score between the two facts
-        similarity_score = openai.api.Completion.create(
-            engine="text-davinci-002",
-            prompt=f"Similarity between \"{fact}\" and \"{existing_fact}\".",
-            temperature=0.5,
-            max_tokens=32,
-            n=1,
-            stop=None
-        ).choices[0].text.strip()
+        try:
+            similarity_score = openai.Completion.create(
+                engine="text-davinci-002",
+                prompt=f"Similarity between \"{fact}\" and \"{existing_fact}\".",
+                temperature=1,
+                max_tokens=32,
+                n=1,
+                stop=None
+            ).choices[0].text.strip()
 
-        # Convert the similarity score to a float
-        similarity_score = float(similarity_score)
+            if similarity_score == "There is no similarity between the two sentences.":
+                continue
+            # Convert the similarity score to a float
+            similarity_score = float(similarity_score)
 
-        # Check if the similarity score is above the threshold
-        if similarity_score >= threshold:
-            return True
+            # Check if the similarity score is above the threshold
+            if similarity_score >= threshold:
+                return True
+        except ValueError:
+
+            return False
 
     return False
 
@@ -84,12 +89,11 @@ def read_existing_facts_from_csv(filename):
 
     return existing_facts
 
-def main():
 
+def main():
 
     for i in range(20):
         facts_generator()
-
 
 
 if __name__ == '__main__':
