@@ -3,7 +3,7 @@ import openai
 import csv
 import os
 import Variables
-from twisted.python.util import println
+
 
 
 def facts_generator():
