@@ -90,6 +90,8 @@ def read_existing_facts_from_csv(filename):
     return existing_facts
 
 
+
+
 def main():
 
     for i in range(20):
