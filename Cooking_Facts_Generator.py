@@ -10,7 +10,7 @@ def facts_generator():
     # Set your OpenAI API key
 
     openai.api_key = Variables.api_key
-    filename = "cooking_facts.csv"
+    filename = "CSV Files/cooking_facts.csv"
     prompt = Variables.prompt
 
     # Generate cooking facts using OpenAI's GPT-3 API
@@ -53,7 +53,7 @@ def check_similarity(fact, existing_facts, threshold=0.8):
             similarity_score = openai.Completion.create(
                 engine="text-davinci-002",
                 prompt=f"Similarity between \"{fact}\" and \"{existing_fact}\".",
-                temperature=1,
+                temperature=0.5,
                 max_tokens=32,
                 n=1,
                 stop=None

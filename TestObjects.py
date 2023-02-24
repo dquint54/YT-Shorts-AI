@@ -16,17 +16,5 @@ test_objects = {
     "sign_in_password": TestObjects("xpath", "//input[@type ='password']"),
     # End YouTube
 
-    # Pictory Test Objects
-
-    "sign_in_email_pictory": TestObjects("xpath", "//input[@class='MuiInputBase-input MuiOutlinedInput-input "
-                                                  "css-hdttf2']"),
-    "sign_in_password_pictory": TestObjects("xpath", "//input[@class='MuiInputBase-input MuiOutlinedInput-input "
-                                                     "MuiInputBase-inputAdornedEnd css-10hu1bj']"),
-    "login_button": TestObjects("xpath", "(//*[@class=\"MuiGrid-root MuiGrid-container css-1cn3yto\"])[5]"),
-
-    "proceed_button": TestObjects("xpath", "(//button[text()='Proceed'])[1]")
-
-
-    # Chat GpT Test Objects
 
 }
