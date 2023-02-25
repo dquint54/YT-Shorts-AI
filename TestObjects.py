@@ -6,7 +6,7 @@ class TestObjects:
 
 test_objects = {
 
-    # YouTube Test Objects
+    # Start YouTube Test Objects
 
     "login_button": TestObjects("xpath", "(//a[@aria-label='Sign in'])[1]"),
     "sign_in_email": TestObjects("xpath", "//input[@class='whsOnd zHQkBf'][@type='email']"),
@@ -15,6 +15,19 @@ test_objects = {
                                         "lw1w4b']"),
     "sign_in_password": TestObjects("xpath", "//input[@type ='password']"),
     # End YouTube
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

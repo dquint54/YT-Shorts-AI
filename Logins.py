@@ -20,7 +20,7 @@ def login(username, password):
     sign_in_email = test_objects.get("sign_in_email")
     next_button = test_objects.get("next_button")
     sign_in_password = test_objects.get("sign_in_password")
-    wait = WebDriverWait(driver, 5)
+
 
     # navigate to YouTube and identify test objects
     # Click on test objects then sleep until webpages are loaded properly
