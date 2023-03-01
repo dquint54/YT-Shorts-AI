@@ -2,10 +2,13 @@ import csv
 import json
 import os
 import random
+
+import gtts
 import requests
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 from moviepy.video.VideoClip import TextClip
 from moviepy.video.compositing.CompositeVideoClip import CompositeVideoClip
+from mutagen.mp3 import MP3
 from tqdm import tqdm
 from twisted.python.util import println
 
@@ -18,6 +21,7 @@ def download_video(url: str, filename: str) -> str:
     total_size_in_bytes = int(response.headers.get('content-length', 0))
     block_size = 1024  # 1 Kibibyte
     progress_bar = tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True)
+
     with open(filename, 'wb') as file:
         for data in response.iter_content(block_size):
             progress_bar.update(len(data))
@@ -33,9 +37,11 @@ def get_video_url(api_key: str, query: str, orientation: str) -> str:
     headers = {'Authorization': api_key}
     params = {'query': query, 'orientation': orientation}
     response = requests.get('https://api.pexels.com/videos/search', headers=headers, params=params)
+
     if response.status_code != 200:
         print(f"Failed to scrape videos. Status code: {response.status_code}")
         return None
+
     data = json.loads(response.text)
     video_count = len(data['videos'])
     if video_count == 0:
@@ -43,6 +49,7 @@ def get_video_url(api_key: str, query: str, orientation: str) -> str:
         return None
     random_video_index = random.randint(0, video_count - 1)
     video_url = data['videos'][random_video_index]['video_files'][0]['link']
+
     return video_url
 
 
@@ -118,21 +125,16 @@ def get_random_video(video_dir):
 
 
 
-
-
-
-
-
-
-
-
-
-def combine_video_fact_song(pexels_api_key: str, query: str, orientation: str, save_dir: str, file_path: str, music_dir: str) -> None:
+def combine_video_fact_song(fact_FF: str, song: str, video: str,):
     # Get random video from Pexels
     video_file = scrape_and_download_video(pexels_api_key, query, orientation, save_dir)
     if not video_file:
         print("Failed to download video")
         return
+    quoteArray = []
+    quoteArray.append(quoteText)
+
+    quoteArray.append(quoteText)
 
     # Get random fact from CSV file
     fact = getFactFromFile(file_path)
@@ -144,8 +146,27 @@ def combine_video_fact_song(pexels_api_key: str, query: str, orientation: str, s
     # Create a video clip from the downloaded video
     video_clip = get_random_video(video_dir)
 
+    for idx, sentence in enumerate(quoteArray):
+        # create the audio
+        save_as = f"tempFiles/temp_audio_{str(idx)}.mp3"
+        tts = gtts.gTTS(sentence, lang='en', tld='ca')
+        # save audio
+        tts.save(save_as)
+        audio = MP3(save_as)
+        time = audio.info.length
+        totalTTSTime += time
+        print(f"Mp3 {str(idx)} has audio length: {time} ")
+
     # Add fact as text overlay
-    txt_clip = TextClip(fact, fontsize=24, color='white', font='Arial', bg_color='transparent').set_pos(('center', 'bottom')).set_duration(video_clip.duration)
+    text_clip = TextClip(
+            txt=sentence,
+            fontsize=70,
+            size=(800, 0),
+            font="Roboto-Regular",
+            color="white",
+            method="caption",
+            ).set_position('center')
+
     video_with_text = CompositeVideoClip([video_clip, txt_clip])
 
     # Add song as audio
