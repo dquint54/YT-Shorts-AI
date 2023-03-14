@@ -1,5 +1,5 @@
 
-# YouTube Video Uploader
+# YuTube Video Uploader 
 
 This is a Python script for uploading videos to YouTube using Selenium web driver.
 
