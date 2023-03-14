@@ -10,7 +10,7 @@ The script requires the following dependencies:
 
 * Selenium: pip install selenium
 * ChromeDriver: pip install webdriver_manager
-##Usage
+## Usage
 * Open the Variables.py file and update the video_dir and used_videos_dir variables with your local directories.
 * Open the login.py file and update the username and password variables with your YouTube credentials.
 * Run the script: python login.py
