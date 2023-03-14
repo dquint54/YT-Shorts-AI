@@ -4,6 +4,7 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from Variables import video_dir, used_videos_dir
 
@@ -54,42 +55,42 @@ def login(username, password):
         driver.maximize_window()
         time.sleep(15)
 
-        login_b = driver.find_element_by_xpath(login_button.locator)
+        login_b = driver.find_element(By.XPATH, login_button.locator)
         login_b.click()
         time.sleep(15)
 
-        sign_in_b = driver.find_element_by_xpath(sign_in_email.locator)
+        sign_in_b = driver.find_element(By.XPATH, sign_in_email.locator)
         sign_in_b.click()
         sign_in_b.send_keys(username)
         time.sleep(15)
 
-        next_b = driver.find_element_by_xpath(next_button.locator)
+        next_b = driver.find_element(By.XPATH, next_button.locator)
         next_b.click()
 
         time.sleep(15)
 
-        sign_in_p_b = driver.find_element_by_xpath(sign_in_password.locator)
+        sign_in_p_b = driver.find_element(By.XPATH, sign_in_password.locator)
         sign_in_p_b.click()
         sign_in_p_b.send_keys(password)
 
         time.sleep(15)
 
-        next_b2 = driver.find_element_by_xpath(next_button.locator)
+        next_b2 = driver.find_element(By.XPATH, next_button.locator)
         next_b2.click()
 
         time.sleep(15)
 
-        create_b = driver.find_element_by_xpath(create_button.locator)
+        create_b = driver.find_element(By.XPATH, create_button.locator)
         create_b.click()
 
         time.sleep(15)
 
-        upload_b = driver.find_element_by_xpath(upload_button.locator)
+        upload_b = driver.find_element(By.XPATH, upload_button.locator)
         upload_b.click()
 
         time.sleep(15)
 
-        file_upload = driver.find_element_by_xpath(file_input.locator)
+        file_upload = driver.find_element(By.XPATH, file_input.locator)
 
         try:
             file_upload.send_keys(video_path)
@@ -105,50 +106,50 @@ def login(username, password):
 
         time.sleep(15)
 
-        title_b = driver.find_element_by_xpath(title_box.locator)
+        title_b = driver.find_element(By.XPATH, title_box.locator)
         title_b.clear()
         title_b.send_keys(title)
 
         with open("video_number.txt", "w") as f:
             f.write(str(video_number))
 
-        description_box_b = driver.find_element_by_xpath(descript_box.locator)
+        description_box_b = driver.find_element(By.XPATH, descript_box.locator)
         description_box_b.send_keys("Get ready to spice up your kitchen with these hilarious and interesting cooking "
                                     "quotes! Don't forget to like, comment, and subscribe for more foodie content.")
 
         time.sleep(15)
 
-        no_kids_b = driver.find_element_by_xpath(no_kids.locator)
+        no_kids_b = driver.find_element(By.XPATH, no_kids.locator)
         no_kids_b.click()
 
         time.sleep(15)
 
-        youtube_b = driver.find_element_by_xpath(youtube_next_button.locator)
+        youtube_b = driver.find_element(By.XPATH, youtube_next_button.locator)
         youtube_b.click()
 
         time.sleep(15)
 
-        youtube_b1 = driver.find_element_by_xpath(youtube_next_button.locator)
+        youtube_b1 = driver.find_element(By.XPATH, youtube_next_button.locator)
         youtube_b1.click()
 
         time.sleep(15)
 
-        youtube_b2 = driver.find_element_by_xpath(youtube_next_button.locator)
+        youtube_b2 = driver.find_element(By.XPATH, youtube_next_button.locator)
         youtube_b2.click()
 
         time.sleep(15)
 
-        public_b = driver.find_element_by_xpath(public_button.locator)
+        public_b = driver.find_element(By.XPATH, public_button.locator)
         public_b.click()
 
         time.sleep(15)
 
-        save_b = driver.find_element_by_xpath(save_button.locator)
+        save_b = driver.find_element(By.XPATH, save_button.locator)
         save_b.click()
 
         time.sleep(15)
 
-        close_b = driver.find_element_by_xpath(close_button.locator)
+        close_b = driver.find_element(By.XPATH, close_button.locator)
         close_b.click()
 
         time.sleep(15)
