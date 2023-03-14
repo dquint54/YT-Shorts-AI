@@ -1,5 +1,6 @@
 import shutil
 import time
+import random
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
@@ -36,6 +37,10 @@ def login(username, password):
     save_button = test_objects.get("save_button")
     close_button = test_objects.get("close_button")
 
+    """End Initializing Test objects"""
+
+    r_int = random.randint(7, 15)
+
     video_files = os.listdir(video_dir)
     video_path = os.path.join(video_dir, video_files[0])
 
@@ -49,114 +54,131 @@ def login(username, password):
 
     # navigate to YouTube and identify test objects
     # Click on test objects then sleep until webpages are loaded properly
+
     try:
 
         driver.get('https://www.youtube.com')
         driver.maximize_window()
-        time.sleep(15)
+        time.sleep(r_int)
 
         login_b = driver.find_element(By.XPATH, login_button.locator)
         login_b.click()
-        time.sleep(15)
+        time.sleep(r_int)
 
         sign_in_b = driver.find_element(By.XPATH, sign_in_email.locator)
         sign_in_b.click()
         sign_in_b.send_keys(username)
-        time.sleep(15)
+        time.sleep(r_int)
 
         next_b = driver.find_element(By.XPATH, next_button.locator)
         next_b.click()
 
-        time.sleep(15)
+        time.sleep(r_int)
 
         sign_in_p_b = driver.find_element(By.XPATH, sign_in_password.locator)
         sign_in_p_b.click()
         sign_in_p_b.send_keys(password)
 
-        time.sleep(15)
+        time.sleep(r_int)
 
         next_b2 = driver.find_element(By.XPATH, next_button.locator)
         next_b2.click()
 
-        time.sleep(15)
+        time.sleep(r_int)
 
-        create_b = driver.find_element(By.XPATH, create_button.locator)
-        create_b.click()
+        count = 1
 
-        time.sleep(15)
+        while count <= 10:
 
-        upload_b = driver.find_element(By.XPATH, upload_button.locator)
-        upload_b.click()
+            uploading_video = f"Starting to upload video {count}"
+            print(uploading_video)
 
-        time.sleep(15)
+            create_b = driver.find_element(By.XPATH, create_button.locator)
+            create_b.click()
 
-        file_upload = driver.find_element(By.XPATH, file_input.locator)
+            time.sleep(r_int)
 
-        try:
-            file_upload.send_keys(video_path)
-            time.sleep(5)
-            video_number += 1
-            print("Upload successful")
-            shutil.move(video_path, os.path.join(used_videos_dir, video_files[0]))
-        except Exception as e:
-            print(f"Upload unsuccessful: {e}")
+            upload_b = driver.find_element(By.XPATH, upload_button.locator)
+            upload_b.click()
 
-        num_videos_uploaded = len(video_files)
-        title = f"Quote of the Day Pt. {video_number}"
+            time.sleep(r_int)
 
-        time.sleep(15)
+            file_upload = driver.find_element(By.XPATH, file_input.locator)
 
-        title_b = driver.find_element(By.XPATH, title_box.locator)
-        title_b.clear()
-        title_b.send_keys(title)
+            try:
+                file_upload.send_keys(video_path)
+                time.sleep(5)
+                video_number += 1
+                print("Upload successful")
+                shutil.move(video_path, os.path.join(used_videos_dir, video_files[0]))
+            except Exception as e:
+                print(f"Upload unsuccessful: {e}")
 
-        with open("video_number.txt", "w") as f:
-            f.write(str(video_number))
+            num_videos_uploaded = len(video_files)
+            title = f"Quote of the Day Pt. {video_number}"
 
-        description_box_b = driver.find_element(By.XPATH, descript_box.locator)
-        description_box_b.send_keys("Get ready to spice up your kitchen with these hilarious and interesting cooking "
-                                    "quotes! Don't forget to like, comment, and subscribe for more foodie content.")
+            time.sleep(r_int)
 
-        time.sleep(15)
+            title_b = driver.find_element(By.XPATH, title_box.locator)
+            title_b.clear()
+            title_b.send_keys(title)
 
-        no_kids_b = driver.find_element(By.XPATH, no_kids.locator)
-        no_kids_b.click()
+            with open("video_number.txt", "w") as f:
+                f.write(str(video_number))
 
-        time.sleep(15)
+            description_box_b = driver.find_element(By.XPATH, descript_box.locator)
+            description_box_b.send_keys(
+                "Get ready to spice up your kitchen with these hilarious and interesting cooking "
+                "quotes! Don't forget to like, comment, and subscribe for more foodie content.")
 
-        youtube_b = driver.find_element(By.XPATH, youtube_next_button.locator)
-        youtube_b.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            no_kids_b = driver.find_element(By.XPATH, no_kids.locator)
+            no_kids_b.click()
 
-        youtube_b1 = driver.find_element(By.XPATH, youtube_next_button.locator)
-        youtube_b1.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            youtube_b = driver.find_element(By.XPATH, youtube_next_button.locator)
+            youtube_b.click()
 
-        youtube_b2 = driver.find_element(By.XPATH, youtube_next_button.locator)
-        youtube_b2.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            youtube_b1 = driver.find_element(By.XPATH, youtube_next_button.locator)
+            youtube_b1.click()
 
-        public_b = driver.find_element(By.XPATH, public_button.locator)
-        public_b.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            youtube_b2 = driver.find_element(By.XPATH, youtube_next_button.locator)
+            youtube_b2.click()
 
-        save_b = driver.find_element(By.XPATH, save_button.locator)
-        save_b.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            public_b = driver.find_element(By.XPATH, public_button.locator)
+            public_b.click()
 
-        close_b = driver.find_element(By.XPATH, close_button.locator)
-        close_b.click()
+            time.sleep(r_int)
 
-        time.sleep(15)
+            save_b = driver.find_element(By.XPATH, save_button.locator)
+            save_b.click()
+
+            time.sleep(r_int)
+
+            close_b = driver.find_element(By.XPATH, close_button.locator)
+            close_b.click()
+
+            time.sleep(r_int)
+
+            finishing_video = f"Video number {count} is completed."
+            print(finishing_video)
+
+            driver.get('https://www.youtube.com')
+
+            time.sleep(r_int)
+
+            count += 1
 
         driver.quit()
         return True
-
     except NoSuchElementException as e:
         print("Element not found: ", e.msg)
         return False
