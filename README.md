@@ -1,29 +1,19 @@
-YouTube Auto Uploader
-This script is used to automatically upload videos to YouTube using Selenium and Python. It logs in to a YouTube account, selects the option to upload a video, selects the video file, sets the title and description, selects the privacy settings, and then publishes the video.
 
-How to Use
-Install the required libraries:
-Copy code
-pip install selenium webdriver_manager
-Add the video file you want to upload to the video_dir directory.
-Update the Variables.py file with the correct test object locators for your YouTube account.
-Run the script:
-Copy code
-python youtube_uploader.py
-The script will prompt you to enter your YouTube login credentials.
-Requirements
-This script requires the following libraries to be installed:
+#YouTube Video Uploader
+This is a Python script for uploading videos to YouTube using Selenium web driver.
 
-Selenium
-Webdriver_manager
-shutil
-Script Details
-The login function in the script creates a Chrome web driver instance and initializes test objects for identifying web elements on the YouTube page. It takes two parameters, username and password, and returns a boolean value indicating if the login was successful or not.
+#Getting Started
+Prerequisites
+The script requires the following dependencies:
 
-The script then checks if the video_number.txt file exists, and if it does, reads the value of "i" from it. If the file does not exist, the value of "i" is set to 0. The script then navigates to YouTube and identifies test objects for the login page.
+Selenium: pip install selenium
+ChromeDriver: pip install webdriver_manager
+Usage
+Open the Variables.py file and update the video_dir and used_videos_dir variables with your local directories.
+Open the login.py file and update the username and password variables with your YouTube credentials.
+Run the script: python login.py
+How it Works
+The script uses the Selenium web driver to automate the process of uploading videos to YouTube. It navigates to the YouTube website, logs in to your account, and uploads the video from the specified directory. The script also generates a title and description for the video and sets the privacy settings to "public".
 
-After successfully logging in, the script clicks on the create button and selects the upload video option. It then selects the video file, sets the title and description, selects the privacy settings, and publishes the video.
-
-Once the video is uploaded successfully, it moves the uploaded video file to the used_videos_dir directory.
-
-If an error occurs during the process, it prints a message indicating the error and returns False. Otherwise, it returns True.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
