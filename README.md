@@ -1,4 +1,3 @@
-# YT-Shorts-AI
 YouTube Auto Uploader
 This script is used to automatically upload videos to YouTube using Selenium and Python. It logs in to a YouTube account, selects the option to upload a video, selects the video file, sets the title and description, selects the privacy settings, and then publishes the video.
 
