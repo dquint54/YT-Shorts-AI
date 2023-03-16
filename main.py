@@ -7,9 +7,11 @@ import time
 import openai
 import tkinter as tk
 import threading
-from tkinter import ttk
+import sys
 
+from tkinter import ttk
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -25,7 +27,10 @@ SLEEP_UPPER = 15
 TIMEOUT = 10
 exit_app = False
 
-CONFIG_FILE = "config.json"
+script_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
+
+
+CONFIG_FILE = config_file_path = 'C:\\Users\\Q\\PycharmProjects\\YT-Shorts-AI\\config.json'
 LOG_FILE = "upload_log.log"
 
 # Create logging file
@@ -122,9 +127,16 @@ def random_sleep():
 def find_element_on_page(driver, primary, backup):
     try:
         return driver.find_element(*primary.locator)
-    except:
-        return driver.find_element(*backup.locator)
-
+    except NoSuchElementException:
+        logging.error("Failed to find element using the primary locator: %s", primary.locator)
+        logging.info("Trying to find element using the backup locator: %s", backup.locator)
+        try:
+            element = driver.find_element(*backup.locator)
+            logging.info("Successfully found element using the backup locator: %s", backup.locator)
+            return element
+        except NoSuchElementException:
+            logging.error("Failed to find element using both primary and backup locators.")
+            raise
 
 """Generating random description for Youtube video"""
 
@@ -305,8 +317,9 @@ def upload_videos(driver, test_objects, video_number, video_dir, used_videos_dir
 
 
 def main():
-    clear_log_file(LOG_FILE)
+
     config = load_config(CONFIG_FILE)
+    clear_log_file(LOG_FILE)
 
     log_thread = threading.Thread(target=show_log_file, args=(LOG_FILE,))
     log_thread.start()
