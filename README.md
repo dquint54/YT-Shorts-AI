@@ -28,7 +28,6 @@ The configuration for this script is stored in the config.json file. You need to
 - used_videos_dir: The directory where you want to move the uploaded videos
 - api_key: Your OpenAI API key for generating descriptions
 
-You also need to set the locators for various web elements in the test_objects and test_objects_backup sections.
 
 ## Usage
 1. Configure the config.json file with your account credentials, directories, and API key.
