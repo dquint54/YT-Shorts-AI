@@ -24,10 +24,6 @@
     "public_button_BU": ["xpath", "//div[@id='offRadio']"],
     "youtube_next_button_BU": ["xpath", "//ytcp-button[@id='next-button']"],
     "save_button_BU": ["xpath", "//div[@class='label style-scope ytcp-button' and text()='Save']"]
-  },
-  "username": "ytshortsauto@gmail.com",
-  "password": "Determined12.",
-  "video_dir": "C:/Users/Q/Desktop/videos",
-  "used_videos_dir": "C:/Users/Q/Desktop/used_videos",
-  "api_key":"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"
+  }
+
 }
